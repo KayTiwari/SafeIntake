@@ -27,16 +27,16 @@
 
 ## Lifecycle of a document
 
-1. **Upload** — `POST /api/documents` stores the PDF on disk, creates a `Document`
+1. **Upload**: `POST /api/documents` stores the PDF on disk, creates a `Document`
    row, and writes an `upload` audit event.
-2. **Analyze** — `app/services/pipeline.py` extracts words + bboxes from each
+2. **Analyze**: `app/services/pipeline.py` extracts words + bboxes from each
    page (`ocr.py`), runs regex-based PHI detection (`detector.py`), then maps
    matches back to PDF coordinates. Each match becomes an `Entity` row in state
    `pending`. An `analyze_complete` audit event is written.
-3. **Review** — A human reviewer opens the document in the UI, approves or
+3. **Review**: a human reviewer opens the document in the UI, approves or
    rejects each detection. Every state transition writes an `entity_review`
    audit event with the actor, the entity type, and the state change.
-4. **Redact** — `POST /api/documents/:id/redact` calls `redactor.py`, which uses
+4. **Redact**: `POST /api/documents/:id/redact` calls `redactor.py`, which uses
    PyMuPDF's `add_redact_annot` + `apply_redactions` to permanently strip the
    underlying content (not just paint over it). The output is saved to disk and
    served by `GET /api/documents/:id/redacted`. A `redact` audit event is written
@@ -44,7 +44,7 @@
 
 ## Why these choices
 
-- **PyMuPDF for redaction**: real content-stream removal, not a visual overlay.
+- **PyMuPDF for redaction**: glyphs are stripped from the content stream.
   Output PDFs cannot be un-redacted by copy/paste or text extraction.
 - **Bbox-bound entities**: each detection carries its page + bounding box, so
   the reviewer's approve/reject choices map deterministically to what gets

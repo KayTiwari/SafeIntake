@@ -19,8 +19,8 @@ unglamorous bottleneck: paperwork full of identifiers that legally cannot leave
 the building unredacted. Off-the-shelf tools either dump everything to a
 third-party API or hide their decisions from the reviewer. SafeIntake takes the
 opposite stance: every detection is visible, every approval is logged, and the
-redaction itself is a true content-stream removal, not a black rectangle drawn
-over text that can still be selected.
+redaction itself physically removes glyphs from the PDF content stream so the
+output cannot be un-redacted by copying out the text.
 
 ## Features
 
@@ -29,7 +29,7 @@ over text that can still be selected.
 - **Bounding-box mapped detections** so each match is anchored to a specific
   region of a specific page
 - **Reviewer-in-the-loop UI** for approve/reject per detection
-- **True PDF redaction** via PyMuPDF (`apply_redactions`), not an overlay
+- **PDF redaction** via PyMuPDF (`apply_redactions`), which strips glyphs from the content stream
 - **Immutable audit trail** of every action, with actor attribution via the
   `X-Actor` header
 - **REST API** that the frontend uses and that integrations can drive directly

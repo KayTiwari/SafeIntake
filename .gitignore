@@ -28,3 +28,4 @@ backend/data/
 # Env
 .env
 .env.local
+.vercel
