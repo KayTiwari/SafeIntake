@@ -1,6 +1,6 @@
 # SafeIntake
 
-AI-assisted PHI redaction and document intake for regulated workflows.
+Possibly AI-assisted PHI redaction and document intake for regulated workflows.
 
 SafeIntake ingests a PDF (think intake forms, clinical notes, claims paperwork,
 discovery exhibits), detects HIPAA/PII identifiers, and presents the matches
