@@ -1,6 +1,6 @@
 # SafeIntake
 
-safeintake.vercel.app
+http://safeintake.vercel.app
 
 Possibly AI-assisted PHI redaction and document intake for regulated workflows.
 
