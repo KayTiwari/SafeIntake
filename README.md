@@ -124,3 +124,8 @@ The suite covers:
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Contributors
+
+- **Abhi K. Tiwari** (creator)
+- **Claude (Anthropic)**, AI pair programmer
